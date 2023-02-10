@@ -115,7 +115,7 @@
     background-image: linear-gradient(-225deg, #69eacb 0, #eaccf8 48%, #6654f1 100%)
 }
 
-@media only screen and (max-width: 475px) {
+@media only screen and (max-width:475px) {
     .mosha__toast {
         max-width: 95.2%;
         left: 0;
@@ -161,7 +161,11 @@
 }
 
 @keyframes bounceInRight {
-    60%, 75%, 90%, 0%, to {
+    60%,
+    75%,
+    90%,
+    0%,
+    to {
         animation-timing-function: cubic-bezier(.215, .61, .355, 1)
     }
     0% {
@@ -195,7 +199,11 @@
 }
 
 @keyframes bounceInLeft {
-    60%, 75%, 90%, 0%, to {
+    60%,
+    75%,
+    90%,
+    0%,
+    to {
         animation-timing-function: cubic-bezier(.215, .61, .355, 1)
     }
     0% {
@@ -229,7 +237,11 @@
 }
 
 @keyframes bounceInUp {
-    60%, 75%, 90%, 0%, to {
+    60%,
+    75%,
+    90%,
+    0%,
+    to {
         animation-timing-function: cubic-bezier(.215, .61, .355, 1)
     }
     0% {
@@ -255,7 +267,8 @@
     20% {
         transform: translateY(-10px)
     }
-    40%, 45% {
+    40%,
+    45% {
         opacity: 1;
         transform: translateY(20px)
     }
@@ -266,7 +279,11 @@
 }
 
 @keyframes bounceInDown {
-    60%, 75%, 90%, 0%, to {
+    60%,
+    75%,
+    90%,
+    0%,
+    to {
         animation-timing-function: cubic-bezier(.215, .61, .355, 1)
     }
     0% {
@@ -292,7 +309,8 @@
     20% {
         transform: translateY(10px)
     }
-    40%, 45% {
+    40%,
+    45% {
         opacity: 1;
         transform: translateY(-20px)
     }
@@ -505,14 +523,17 @@
     image-rendering: pixelated
 }
 
-*, :before, :after {
+*,
+:before,
+:after {
     box-sizing: border-box;
     border-width: 0;
     border-style: solid;
     border-color: #e5e7eb
 }
 
-:before, :after {
+:before,
+:after {
     --tw-content: ""
 }
 
@@ -541,7 +562,12 @@ abbr:where([title]) {
     text-decoration: underline dotted
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-size: inherit;
     font-weight: inherit
 }
@@ -551,11 +577,15 @@ a {
     text-decoration: inherit
 }
 
-b, strong {
+b,
+strong {
     font-weight: bolder
 }
 
-code, kbd, samp, pre {
+code,
+kbd,
+samp,
+pre {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
     font-size: 1em
 }
@@ -564,7 +594,8 @@ small {
     font-size: 80%
 }
 
-sub, sup {
+sub,
+sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -585,7 +616,11 @@ table {
     border-collapse: collapse
 }
 
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
     font-family: inherit;
     font-size: 100%;
     font-weight: inherit;
@@ -595,11 +630,15 @@ button, input, optgroup, select, textarea {
     padding: 0
 }
 
-button, select {
+button,
+select {
     text-transform: none
 }
 
-button, [type=button], [type=reset], [type=submit] {
+button,
+[type=button],
+[type=reset],
+[type=submit] {
     -webkit-appearance: button;
     background-color: transparent;
     background-image: none
@@ -617,7 +656,8 @@ progress {
     vertical-align: baseline
 }
 
-::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
     height: auto
 }
 
@@ -639,7 +679,19 @@ summary {
     display: list-item
 }
 
-blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
     margin: 0
 }
 
@@ -652,7 +704,9 @@ legend {
     padding: 0
 }
 
-ol, ul, menu {
+ol,
+ul,
+menu {
     list-style: none;
     margin: 0;
     padding: 0
@@ -662,17 +716,20 @@ textarea {
     resize: vertical
 }
 
-input::-moz-placeholder, textarea::-moz-placeholder {
+input::-moz-placeholder,
+textarea::-moz-placeholder {
     opacity: 1;
     color: #9ca3af
 }
 
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
     opacity: 1;
     color: #9ca3af
 }
 
-button, [role=button] {
+button,
+[role=button] {
     cursor: pointer
 }
 
@@ -680,12 +737,20 @@ button, [role=button] {
     cursor: default
 }
 
-img, svg, video, canvas, audio, iframe, embed, object {
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
     display: block;
     vertical-align: middle
 }
 
-img, video {
+img,
+video {
     max-width: 100%;
     height: auto
 }
@@ -694,7 +759,9 @@ img, video {
     display: none
 }
 
-*, :before, :after {
+*,
+:before,
+:after {
     --tw-border-spacing-x: 0;
     --tw-border-spacing-y: 0;
     --tw-translate-x: 0;
@@ -826,7 +893,7 @@ img, video {
     pointer-events: none
 }
 
-.\!fixed {
+.\ !fixed {
     position: fixed !important
 }
 
@@ -1242,23 +1309,24 @@ img, video {
 }
 
 .grid-cols-3 {
-    grid-template-columns:repeat(3, minmax(0, 1fr))
+    grid-template-columns: repeat(3, minmax(0, 1fr))
 }
 
 .grid-cols-5 {
-    grid-template-columns:repeat(5, minmax(0, 1fr))
+    grid-template-columns: repeat(5, minmax(0, 1fr))
 }
 
-.grid-cols-\[2\.5fr\,1\.3fr\] {
-    grid-template-columns:2.5fr 1.3fr
+.grid-cols-\[2\.5fr\,
+1\.3fr\] {
+    grid-template-columns: 2.5fr 1.3fr
 }
 
 .grid-cols-4 {
-    grid-template-columns:repeat(4, minmax(0, 1fr))
+    grid-template-columns: repeat(4, minmax(0, 1fr))
 }
 
 .grid-cols-2 {
-    grid-template-columns:repeat(2, minmax(0, 1fr))
+    grid-template-columns: repeat(2, minmax(0, 1fr))
 }
 
 .flex-row {
@@ -2170,39 +2238,30 @@ body {
         margin-left: 0;
         margin-right: 0
     }
-
     .lg\:mt-0 {
         margin-top: 0
     }
-
     .lg\:block {
         display: block
     }
-
     .lg\:flex {
         display: flex
     }
-
     .lg\:grid {
         display: grid
     }
-
     .lg\:hidden {
         display: none
     }
-
     .lg\:max-w-3xl {
         max-width: 48rem
     }
-
     .lg\:grid-cols-8 {
-        grid-template-columns:repeat(8, minmax(0, 1fr))
+        grid-template-columns: repeat(8, minmax(0, 1fr))
     }
-
     .lg\:grid-cols-4 {
-        grid-template-columns:repeat(4, minmax(0, 1fr))
+        grid-template-columns: repeat(4, minmax(0, 1fr))
     }
-
     .lg\:text-sm {
         font-size: .875rem;
         line-height: 1.25rem
@@ -2211,45 +2270,44 @@ body {
 
 @media (min-width: 1280px) {
     .xl\:grid-cols-5 {
-        grid-template-columns:repeat(5, minmax(0, 1fr))
+        grid-template-columns: repeat(5, minmax(0, 1fr))
     }
 }
 
 @media (min-width: 1536px) {
     .\32xl\:grid-cols-6 {
-        grid-template-columns:repeat(6, minmax(0, 1fr))
+        grid-template-columns: repeat(6, minmax(0, 1fr))
     }
-
     .\32xl\:grid-cols-5 {
-        grid-template-columns:repeat(5, minmax(0, 1fr))
+        grid-template-columns: repeat(5, minmax(0, 1fr))
     }
 }
 
-.\[\&\>a\]\:cursor-pointer > a {
+.\[\&\>a\]\:cursor-pointer>a {
     cursor: pointer
 }
 
-.\[\&\>a\]\:border-b-\[5px\] > a {
+.\[\&\>a\]\:border-b-\[5px\]>a {
     border-bottom-width: 5px
 }
 
-.\[\&\>a\]\:pb-2 > a {
+.\[\&\>a\]\:pb-2>a {
     padding-bottom: .5rem
 }
 
-.\[\&\>div\]\:w-full > div {
+.\[\&\>div\]\:w-full>div {
     width: 100%
 }
 
-.\[\&\>div\]\:cursor-pointer > div {
+.\[\&\>div\]\:cursor-pointer>div {
     cursor: pointer
 }
 
-.\[\&\>div\]\:border-b-\[5px\] > div {
+.\[\&\>div\]\:border-b-\[5px\]>div {
     border-bottom-width: 5px
 }
 
-.\[\&\>div\]\:pb-2 > div {
+.\[\&\>div\]\:pb-2>div {
     padding-bottom: .5rem
 }
 
@@ -2273,11 +2331,11 @@ body {
     transition-property: transform, visibility, opacity
 }
 
-.tippy-box[data-placement^=top] > .tippy-arrow {
+.tippy-box[data-placement^=top]>.tippy-arrow {
     bottom: 0
 }
 
-.tippy-box[data-placement^=top] > .tippy-arrow:before {
+.tippy-box[data-placement^=top]>.tippy-arrow:before {
     bottom: -7px;
     left: 0;
     border-width: 8px 8px 0;
@@ -2285,11 +2343,11 @@ body {
     transform-origin: center top
 }
 
-.tippy-box[data-placement^=bottom] > .tippy-arrow {
+.tippy-box[data-placement^=bottom]>.tippy-arrow {
     top: 0
 }
 
-.tippy-box[data-placement^=bottom] > .tippy-arrow:before {
+.tippy-box[data-placement^=bottom]>.tippy-arrow:before {
     top: -7px;
     left: 0;
     border-width: 0 8px 8px;
@@ -2297,22 +2355,22 @@ body {
     transform-origin: center bottom
 }
 
-.tippy-box[data-placement^=left] > .tippy-arrow {
+.tippy-box[data-placement^=left]>.tippy-arrow {
     right: 0
 }
 
-.tippy-box[data-placement^=left] > .tippy-arrow:before {
+.tippy-box[data-placement^=left]>.tippy-arrow:before {
     border-width: 8px 0 8px 8px;
     border-left-color: initial;
     right: -7px;
     transform-origin: center left
 }
 
-.tippy-box[data-placement^=right] > .tippy-arrow {
+.tippy-box[data-placement^=right]>.tippy-arrow {
     left: 0
 }
 
-.tippy-box[data-placement^=right] > .tippy-arrow:before {
+.tippy-box[data-placement^=right]>.tippy-arrow:before {
     left: -7px;
     border-width: 8px 8px 8px 0;
     border-right-color: initial;
