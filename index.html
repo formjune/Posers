@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Customizer</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+<header>
+    <h1>Wolf Game - Customizer</h1>
+</header>
+<main>
+    <div id="app">
+        <div id="custTitle">
+            <h3 class="sub-title-2" id="sub-title-2">Customize your character</h3>
+            <img src="assets/images/layout/heart.svg" alt="heart">
+        </div>
+        <div id="main_block">
+            <div class="left">
+                <div id="customizer"></div>
+                <div class="left_contols">
+                    <button id="back-button"><img src="assets/images/layout/arrow-left.svg" alt="l">Back</button>
+                    <button id="next-button">Next<img src="assets/images/layout/arrow-right.svg" alt="r"></button>
+                </div>
+            </div>
+            <div id="preview">
+                <div class="ssa">
+                    <canvas id="render-canvas" width="250" height="250"></canvas>
+                </div>
+                <div class="controls">
+                    <select id="typeSelector">
+                        <option value="sheep">Sheep</option>
+                        <option value="wolf">Wolf</option>
+                    </select>
+                    <button id="reset-button">Reset</button>
+                    <button id="save-button">Save Image</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="warning-window" class="hidden">
+        <div id="warning-message">
+            Are you sure you want to reset?
+        </div>
+        <div id="warning-buttons">
+            <button id="yes-button">Yes</button>
+            <button id="no-button">No</button>
+        </div>
+    </div>
+</main>
+<script src="assets/js/script.js"></script>
+</body>
+</html>
