@@ -14,6 +14,9 @@ let previewSize = 250;
 var backButton = document.getElementById("back-button");
 var nextButton = document.getElementById("next-button");
 
+var sheepButton = document.getElementById("sheep-button");
+var wolfButton = document.getElementById("wolf-button");
+
 
 nextButton.addEventListener("click", nextFunction);
 backButton.addEventListener("click", backFunction);
@@ -30,6 +33,24 @@ typeSelector.addEventListener("change", function () {
 
 document.getElementById("save-button").addEventListener("click", function () {
     saveImage();
+});
+
+document.getElementById("sheep-button").addEventListener("click", function () {
+    typeSelector.value = "sheep";
+    selected_type = typeSelector.value;
+    selectType(typeSelector.value);
+    resetImage();
+    var html = '<h3 class="sub-title-2">Customize your ' + selected_type + '</h3>';
+    document.querySelector("#sub-title-2").innerHTML = html;
+});
+
+document.getElementById("wolf-button").addEventListener("click", function () {
+    typeSelector.value = "wolf";
+    selected_type = typeSelector.value;
+    selectType(typeSelector.value);
+    resetImage();
+    var html = '<h3 class="sub-title-2">Customize your ' + selected_type + '</h3>';
+    document.querySelector("#sub-title-2").innerHTML = html;
 });
 
 window.onload = function () {
@@ -91,14 +112,12 @@ function reloadImages(value) {
     var trait = traits[currentTrait];
     var assetList = assets[currentTrait];
     html += '  <h3>CHOOSE TRAITS : ' + trait + '</h3>';
-    html += '<div class="trait">';
     html += '  <div class="asset-list">';
     for (var j = 0; j < assetList.length; j++) {
         var asset = assetList[j];
         var assetSrc = 'assets/images/' + selected_type + '/' + trait + '/' + asset;
-        html += '    <img title="' + asset.slice(0, -4) + '" class="asset" src="' + assetSrc + '" onclick="selectAsset(' + currentTrait + ', ' + j + ', true)" style="background-image:url(assets/images/' + selected_type + '/default.png);background-size: 100px; background-position: center;\n">';
+        html += '    <img title="' + asset.slice(0, -4) + '" class="asset" src="' + assetSrc + '" onclick="selectAsset(' + currentTrait + ', ' + j + ', true)" style="background-image:url(assets/images/' + selected_type + '/default.png)\n">';
     }
-    html += '  </div>';
     html += '</div>';
     document.querySelector("#customizer").innerHTML = html;
 }
@@ -148,14 +167,12 @@ function nextFunction() {
             var trait = traits[currentTrait];
             var assetList = assets[currentTrait];
             html += '  <h3>CHOOSE TRAITS : ' + trait + '</h3>';
-            html += '<div class="trait">';
             html += '  <div class="asset-list">';
             for (var j = 0; j < assetList.length; j++) {
                 var asset = assetList[j];
                 var assetSrc = 'assets/images/' + selected_type + '/' + trait + '/' + asset;
-                html += '<img title="' + asset.slice(0, -4) + '" class="asset" src="' + assetSrc + '" onclick="selectAsset(' + currentTrait + ', ' + j + ', true)" style="background-image:url(assets/images/' + selected_type + '/default.png);background-size: 100px; background-position: center;\n">';
+                html += '<img title="' + asset.slice(0, -4) + '" class="asset" src="' + assetSrc + '" onclick="selectAsset(' + currentTrait + ', ' + j + ', true)" style="background-image:url(assets/images/' + selected_type + '/default.png)\n">';
             }
-            html += '  </div>';
             html += '</div>';
             document.querySelector("#customizer").innerHTML = html;
         }
@@ -172,14 +189,12 @@ function backFunction() {
         var trait = traits[currentTrait];
         var assetList = assets[currentTrait];
         html += '  <h3>CHOOSE TRAITS : ' + trait + '</h3>';
-        html += '<div class="trait">';
         html += '  <div class="asset-list">';
         for (var j = 0; j < assetList.length; j++) {
             var asset = assetList[j];
             var assetSrc = 'assets/images/' + selected_type + '/' + trait + '/' + asset;
-            html += '    <img title="' + asset.slice(0, -4) + '" class="asset" src="' + assetSrc + '" onclick="selectAsset(' + currentTrait + ', ' + j + ', true)" style="background-image:url(assets/images/' + selected_type + '/default.png);background-size: 100px; background-position: center;\n">';
+            html += '    <img title="' + asset.slice(0, -4) + '" class="asset" src="' + assetSrc + '" onclick="selectAsset(' + currentTrait + ', ' + j + ', true)" style="background-image:url(assets/images/' + selected_type + '/default.png)\n">';
         }
-        html += '  </div>';
         html += '</div>';
         document.querySelector("#customizer").innerHTML = html;
     }

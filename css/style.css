@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+/*!*@font-face {*!*/
+/*!*    font-family: 'Silkscreen', cursive;*!*/
+/*!*    src: url('../fonts/Silkscreen-Regular.ttf');*!*/
+/*!*}*!*/
+
+* {
+    /*background-color: rgba(90, 140, 199, 0.15) !important;*/
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: Silkscreen, Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #000
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: min(20vw, 30px);
+    line-height: 115%;
+}
+
+header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    top: 0;
+    left: 0;
+    line-height: 1;
+    text-align: center;
+    flex: 0 0 auto;
+    z-index: 5;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    padding-bottom: 200px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    max-width: 1280px;
+    border: solid 4px black;
+    border-image-source: url(../images/layout/border.svg);
+    border-image-outset: 0;
+    border-image-width: 1;
+    border-image-slice: 2;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    gap: 5px;
+    padding: 15px 20px;
+    cursor: pointer;
+    box-shadow: inset -4px -4px #0000004d;
+    border: solid 4px black;
+    border-image-source: url(../images/layout/border.svg);
+    border-image-outset: 0;
+    border-image-width: 1;
+    border-image-slice: 2;
+}
+
+button:hover {
+    box-shadow: inset -8px -8px #0000004d;
+    --tw-bg-opacity: 1;
+    background-color: rgb(225 225 225 / var(--tw-bg-opacity));
+}
+
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#title {
+    border-bottom: rgba(0, 0, 0, 0.1) 4px solid;
+    border-image-outset: 2;
+    border-image-width: 1;
+    border-image-slice: 2;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 20px;
+    /*gap: 50px;*/
+    animation-duration: 1.5s;
+    animation-name: slidetop;
+}
+
+@keyframes slidetop {
+    from {
+        margin-top: 25%;
+        width: 100%;
+    }
+
+    to {
+        margin-top: 0;
+        width: 100%;
+    }
+}
+
+#left-sub-section, #right-sub-section {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+#sub-title-2 {
+    padding: 0 20px;
+}
+
+#left-sub-section {
+    border-right: rgba(0, 0, 0, 0.1) 4px solid;
+    border-image-outset: 2;
+    border-image-width: 1;
+    border-image-slice: 2;
+}
+
+#customizer, #preview {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 500px;
+    min-height: 500px;
+}
+
+#customizer h3 {
+    font-size: min(20vw, 15px);
+    font-weight: 800;
+    margin: 0 !important;
+    padding-bottom: 30px;
+}
+
+.asset-list {
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(94px, 1px));
+    grid-gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.asset-list img {
+    width: 100%;
+    height: auto;
+    max-width: 100px;
+    min-width: 100px;
+    object-fit: cover;
+    padding: 0;
+    image-rendering: pixelated;
+    background-size: cover;
+    background-position: center;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#typeSelector {
+    display: none;
+}
+
+#preview {
+    justify-content: center;
+    align-items: center;
+}
+
+.canvas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.asset-list img {
+    cursor: pointer;
+    border: 3px solid rgb(216, 216, 216);
+    image-rendering: pixelated;
+}
+
+.asset-list img:hover {
+    border-color: #6ce671;
+}
+
+#render-canvas {
+    width: 250px;
+    height: 250px;
+    image-rendering: pixelated;
+}
+
+#warning-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0 0 10px #333;
+    text-align: center;
+}
+
+#warning-message {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#warning-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px !important;
+}
+
+.hidden {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+    header {
+        margin: 0;
+        height: 65px;
+    }
+
+    main {
+        margin: 0;
+
+    }
+}
+
+@media (max-width: 1000px) {
+
+    body {
+        margin: 40px;
+    }
+
+    main {
+        margin: 60px;
+    }
+
+    .container {
+        flex-direction: column !important;
+    }
+
+    #left-sub-section, #right-sub-section {
+        width: 100%;
+        height: 100%;
+        gap: 30px;
+        padding: 0 20px;
+    }
+
+    h1 {
+        font-size: min(20vw, 25px);
+
+    }
+
+    .asset-list img {
+        max-width: 150px;
+        min-width: 150px;
+    }
+
+    .asset-list {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1px));
+    }
+
+    h3 {
+        text-align: center;
+        font-size: min(20vw, 15px);
+    }
+
+    button {
+        width: 80px;
+        height: 50px;
+        font-size: min(20vw, 10px);
+    }
+
+    button img {
+        width: 10px;
+        height: 10px;
+    }
+
+    #preview {
+        justify-content: center;
+        align-items: center;
+        min-height: 100%;
+        padding: 30px 0;
+    }
+
+    #left-sub-section {
+        border-right: none;
+        padding: 20px 0 ;
+        border-bottom: rgba(0, 0, 0, 0.1) 4px solid;
+        border-image-outset: 2;
+        border-image-width: 1;
+        border-image-slice: 2;
+    }
+
+}
