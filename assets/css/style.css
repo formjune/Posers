@@ -49,8 +49,11 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    min-height: 100vh;
-    padding-bottom: 200px;
+    /*min-height: 100vh;*/
+    animation-duration: 1.5s;
+    animation-name: slidetop;
+    margin: 0 40px 40px 40px;
+
 }
 
 main {
@@ -82,6 +85,22 @@ button {
     border-image-outset: 0;
     border-image-width: 1;
     border-image-slice: 2;
+    background-color: white;
+}
+
+/*set button inactive*/
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button:active {
+    box-shadow: inset 8px 8px #0000004d !important;
+}
+
+button:disabled:hover {
+    box-shadow: inset -4px -4px #0000004d;
+    background-color: white;
 }
 
 button:hover {
@@ -113,20 +132,15 @@ button:hover {
     max-width: 1280px;
     margin: 0 auto;
     padding: 20px 20px;
-    /*gap: 50px;*/
-    animation-duration: 1.5s;
-    animation-name: slidetop;
 }
 
 @keyframes slidetop {
     from {
-        margin-top: 25%;
-        width: 100%;
+        opacity: 0;
     }
 
     to {
-        margin-top: 0;
-        width: 100%;
+        opacity: 1;
     }
 }
 
@@ -153,25 +167,28 @@ button:hover {
 #customizer, #preview {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    max-height: 500px;
-    min-height: 500px;
+    height: max(400px, 50vh);
+    max-height: 1000px;
+    width: 100%;
 }
 
-#customizer h3 {
+#customizer h3, #preview h3 {
     font-size: min(20vw, 15px);
     font-weight: 800;
     margin: 0 !important;
     padding-bottom: 30px;
+    color: #646464;
 }
 
 .asset-list {
     overflow: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(94px, 1px));
+    justify-content: space-evenly;
+    align-items: start;
+    grid-template-columns: repeat(auto-fill, minmax(106px, 1px));
     grid-gap: 20px;
-    justify-content: center;
-    align-items: center;
+    animation-duration: 1s;
+    animation-name: slidetop;
 }
 
 .asset-list img {
@@ -199,7 +216,31 @@ button:hover {
 
 #preview {
     justify-content: center;
+    /*align-items: center;*/
+}
+
+#confirmed-traits {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    height: auto;
+    min-height: 80px;
+    max-height: 100px;
+    align-content: flex-start;
+    gap: 5px;
+}
+
+h4 {
+    color: #646464;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.trait {
+    animation-duration: 0.5s;
+    animation-name: slidetop;
 }
 
 .canvas {
@@ -217,7 +258,7 @@ button:hover {
 }
 
 .asset-list img:hover {
-    border-color: #6ce671;
+    border-color: rgb(158 202 88);
 }
 
 #render-canvas {
@@ -231,15 +272,20 @@ button:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
     padding: 30px;
-    box-shadow: 0 0 10px #333;
     text-align: center;
+    background-color: #d8755c;
+    box-shadow: 26px 0 0 -16px #d35f41, -26px 0 0 -16px #d35f41;
+    color: #77250f;
+    animation-duration: 0.5s;
+    animation-name: slidetop;
 }
 
 #warning-message {
     font-size: 20px;
     margin-bottom: 20px;
+    color: #77250f;
+    font-weight: 800;
 }
 
 #warning-buttons {
@@ -248,8 +294,105 @@ button:hover {
     gap: 30px !important;
 }
 
+#warning-buttons button {
+    color: #77250F;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: none !important;
+    border: none;
+    background-color: transparent;
+}
+
+#warning-buttons button:hover {
+    text-decoration: #77250f underline;
+}
+
+#info-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    text-align: center;
+    background-color: #f1d64e;
+    box-shadow: 26px 0 0 -16px #dabf36, -26px 0 0 -16px #dabf36;
+    color: #574900;
+    animation-duration: 0.5s;
+    animation-name: slidetop;
+}
+
+#info-message {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #574900;
+    font-weight: 800;
+}
+
+.asset {
+    font-weight: 700;
+    font-size: 14px;
+    color: #000000;
+}
+
+.asset:hover {
+    text-decoration: #000000 underline;
+}
+
+#info-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px !important;
+}
+
+#info-buttons button {
+    color: #574900;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: none !important;
+    border: none;
+    background-color: transparent;
+}
+
+#info-buttons button:hover {
+    text-decoration: #574900 underline;
+}
+
 .hidden {
     display: none;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100px;
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.pos {
+    font-weight: 800;
+    font-size: 16px;
+    color: #d8755c;
+}
+
+.pos:hover {
+    text-decoration: #d8755c underline;
+}
+
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5px;
+    height: 5px;
+    background-color: #d8755c;
+    margin: 0 10px;
 }
 
 
@@ -266,14 +409,6 @@ button:hover {
 }
 
 @media (max-width: 1000px) {
-
-    body {
-        margin: 40px;
-    }
-
-    main {
-        margin: 60px;
-    }
 
     .container {
         flex-direction: column !important;
@@ -325,7 +460,7 @@ button:hover {
 
     #left-sub-section {
         border-right: none;
-        padding: 20px 0 ;
+        padding: 20px 0;
         border-bottom: rgba(0, 0, 0, 0.1) 4px solid;
         border-image-outset: 2;
         border-image-width: 1;

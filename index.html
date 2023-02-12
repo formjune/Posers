@@ -35,6 +35,8 @@
             </div>
             <div id="right-sub-section">
                 <div id="preview">
+                    <h3>CONFIRMED TRAITS : </h3>
+                    <div id="confirmed-traits"></div>
                     <div class="canvas">
                         <canvas id="render-canvas" width="250" height="250"></canvas>
                     </div>
@@ -46,9 +48,18 @@
                     </select>
                     <button id="sheep-button">Sheep</button>
                     <button id="wolf-button">Wolf</button>
+                    <button id="random-button">Random</button>
                     <button id="save-button">Save</button>
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="info-window" class="hidden">
+        <div id="info-message">
+            You don't have any selected traits yet.
+        </div>
+        <div id="info-buttons">
+            <button id="ok-button">Ok</button>
         </div>
     </div>
     <div id="warning-window" class="hidden">
@@ -61,6 +72,11 @@
         </div>
     </div>
 </main>
+<div class="footer">
+    <div class="square"></div>
+    <a href="https://posers.app/"><span class="pos">POSERS 2023 </span></a>
+    <div class="square"></div>
+</div>
 <script src="assets/js/script.js"></script>
 </body>
 </html>

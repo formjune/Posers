@@ -1,78 +1,73 @@
-var traits = [];
-var assets = [];
-var selected_type = "sheep";
-var currentTrait = 0;
-
+let traits = [];
+let assets = [];
+let selected_type = "sheep";
+let currentTrait = 0;
+let asset_name;
+let trait_name;
+let previewSize = 250;
 
 let render_layers = [];
 let canvas = document.getElementById("render-canvas");
 let ctx = canvas.getContext("2d");
-let typeSelector = document.getElementById("typeSelector");
 
-let previewSize = 250;
+// ______________________________________________________
 
-var backButton = document.getElementById("back-button");
-var nextButton = document.getElementById("next-button");
-
-var sheepButton = document.getElementById("sheep-button");
-var wolfButton = document.getElementById("wolf-button");
-
-
-nextButton.addEventListener("click", nextFunction);
-backButton.addEventListener("click", backFunction);
-
-var html = '<h3 class="sub-title-2">Customize your ' + selected_type + '</h3>';
-document.querySelector("#sub-title-2").innerHTML = html;
-typeSelector.addEventListener("change", function () {
-    selected_type = typeSelector.value;
-    selectType(typeSelector.value);
-    resetImage();
-    var html = '<h3 class="sub-title-2">Customize your ' + selected_type + '</h3>';
-    document.querySelector("#sub-title-2").innerHTML = html;
-});
-
-document.getElementById("save-button").addEventListener("click", function () {
-    saveImage();
-});
-
-document.getElementById("sheep-button").addEventListener("click", function () {
-    typeSelector.value = "sheep";
-    selected_type = typeSelector.value;
-    selectType(typeSelector.value);
-    resetImage();
-    var html = '<h3 class="sub-title-2">Customize your ' + selected_type + '</h3>';
-    document.querySelector("#sub-title-2").innerHTML = html;
-});
-
-document.getElementById("wolf-button").addEventListener("click", function () {
-    typeSelector.value = "wolf";
-    selected_type = typeSelector.value;
-    selectType(typeSelector.value);
-    resetImage();
-    var html = '<h3 class="sub-title-2">Customize your ' + selected_type + '</h3>';
-    document.querySelector("#sub-title-2").innerHTML = html;
-});
+// 0. Load Assets
 
 window.onload = function () {
+    selectCharacter();
     selectType();
-
+    randomize();
 };
 
-let resetButton = document.getElementById("reset-button");
-resetButton.addEventListener("click", function () {
-    document.getElementById("warning-window").classList.remove("hidden");
+// ______________________________________________________
+// 1. Select Character Type
+
+let typeSelector = document.getElementById("typeSelector");
+typeSelector.addEventListener("change", function () {
+    selectCharacter(typeSelector.value);
 });
 
-let yesButton = document.getElementById("yes-button");
-yesButton.addEventListener("click", function () {
+let sheepButton = document.getElementById("sheep-button");
+sheepButton.addEventListener("click", function () {
+    selectCharacter("sheep");
+});
+
+let wolfButton = document.getElementById("wolf-button");
+wolfButton.addEventListener("click", function () {
+    selectCharacter("wolf");
+});
+
+function selectCharacter(value = selected_type) {
+    typeSelector.value = value;
+    selected_type = typeSelector.value;
+    selectType(typeSelector.value);
     resetImage();
-    document.getElementById("warning-window").classList.add("hidden");
+    var html = '<h3 class="sub-title-2">Customize your ' + selected_type + '</h3>';
+    document.querySelector("#sub-title-2").innerHTML = html;
+    if (typeSelector.value === "sheep") document.getElementById("sheep-button").style.display = "none";
+    else if (typeSelector.value === "wolf") document.getElementById("sheep-button").style.display = "flex";
+    if (typeSelector.value === "wolf") document.getElementById("wolf-button").style.display = "none";
+    else if (typeSelector.value === "sheep") document.getElementById("wolf-button").style.display = "flex";
+}
+
+let randomButton = document.getElementById("random-button");
+randomButton.addEventListener("click", function () {
+    randomize();
 });
 
-let noButton = document.getElementById("no-button");
-noButton.addEventListener("click", function () {
-    document.getElementById("warning-window").classList.add("hidden");
-});
+function randomize() {
+    resetImage();
+    for (let i = 0; i < traits.length; i++) {
+        let randomAsset = Math.floor(Math.random() * assets[i].length);
+        selectAsset(i, randomAsset);
+    }
+}
+
+
+// ______________________________________________________
+
+// 2. Select Trait
 
 function selectType(value) {
     if (typeSelector.value === "sheep") {
@@ -100,48 +95,85 @@ function selectType(value) {
     defaultImageF();
 }
 
-function defaultImageF() {
-    document.getElementById("render-canvas").style.backgroundImage = "url(assets/images/" + selected_type + "/default.png)";
-    document.getElementById("render-canvas").style.backgroundSize = previewSize + "px";
-    document.getElementById("render-canvas").src = canvas.toDataURL();
-}
-
 function reloadImages(value) {
     currentTrait = value;
-    var html = "";
-    var trait = traits[currentTrait];
-    var assetList = assets[currentTrait];
+    customizerHTMLsetup();
+}
+
+function customizerHTMLsetup() {
+    let html = "";
+    let trait = traits[currentTrait];
+    let assetList = assets[currentTrait];
     html += '  <h3>CHOOSE TRAITS : ' + trait + '</h3>';
     html += '  <div class="asset-list">';
-    for (var j = 0; j < assetList.length; j++) {
-        var asset = assetList[j];
-        var assetSrc = 'assets/images/' + selected_type + '/' + trait + '/' + asset;
-        html += '    <img title="' + asset.slice(0, -4) + '" class="asset" src="' + assetSrc + '" onclick="selectAsset(' + currentTrait + ', ' + j + ', true)" style="background-image:url(assets/images/' + selected_type + '/default.png)\n">';
+    for (let j = 0; j < assetList.length; j++) {
+        let asset = assetList[j];
+        let assetSrc = 'assets/images/' + selected_type + '/' + trait + '/' + asset;
+        html += '    <img title="' + asset.slice(0, -4) + '" class="asset" src="' + assetSrc + '" onclick="selectAsset(' + currentTrait + ', ' + j + ', true)" style="background-image:url(assets/images/' + selected_type + '/default.png)\n" alt="">';
     }
     html += '</div>';
     document.querySelector("#customizer").innerHTML = html;
+    document.querySelector("#back-button").disabled = currentTrait === 0;
+    document.querySelector("#next-button").disabled = (currentTrait === 6 && typeSelector.value === "sheep") || (currentTrait === 4 && typeSelector.value === "wolf");
 }
 
-function selectAsset(trait_id = 0, asset_id = 0, need_render = false) {
-    let trait_name = traits[trait_id];
-    let asset_name = assets[trait_id][asset_id];
+function selectAsset(trait_id = 0, asset_id = 0, need_render = true) {
+    trait_name = traits[trait_id];
+    asset_name = assets[trait_id][asset_id];
     asset_id = trait_id;
     render_layers[asset_id] = `assets/images/${selected_type}/${trait_name}/${asset_name}`;
     if (need_render) renderImage();
+    let trait = trait_name;
+    let asset = asset_name.slice(0, -4);
+    let html = "";
+    html += '  <div class="trait">';
+    html += '<h4>' + trait + ' : <span class="asset">' + asset + '</span>' + '</h4>';
+    html += '</div>';
+    if (document.querySelector("#confirmed-traits").innerHTML.includes(trait)) {
+        let traitHTML = document.querySelector("#confirmed-traits").innerHTML;
+        let traitHTMLArray = traitHTML.split("</div>");
+        let traitHTMLArray2 = [];
+        for (let i = 0; i < traitHTMLArray.length; i++) {
+            if (traitHTMLArray[i].includes(trait)) traitHTMLArray2.push(html);
+            else traitHTMLArray2.push(traitHTMLArray[i] + "</div>");
+        }
+        document.querySelector("#confirmed-traits").innerHTML = traitHTMLArray2.join("");
+    } else document.querySelector("#confirmed-traits").innerHTML += html;
 }
 
 function renderImage() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.imageSmoothingEnabled = false;
-    for (var i = 0; i < render_layers.length; i++) {
-        var image = new Image();
-        image.src = render_layers[i];
-        console.log(image.src);
-        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    if (render_layers.length === 0) defaultImageF();
+    else {
+        ctx.imageSmoothingEnabled = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < render_layers.length; i++) {
+            let image = new Image();
+            image.src = render_layers[i];
+            image.onload = function () {
+                ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+                let opacity = 0.5;
+                let interval = setInterval(function () {
+                    if (opacity >= 1) {
+                        clearInterval(interval);
+                    }
+                    canvas.style.opacity = opacity;
+                    opacity += 0.01;
+                }, 0.5);
+            }
+            canvas.style.backgroundImage = "none";
+            canvas.src = canvas.toDataURL();
+        }
+        // console.log("rendered : " + render_layers + " on canvas _______________________________");
+        // canvas.style.backgroundImage = "none";
+        // canvas.src = canvas.toDataURL();
     }
-    document.getElementById("render-canvas").style.backgroundImage = "none";
-    document.getElementById("render-canvas").src = canvas.toDataURL();
 }
+
+//_______________________________________________________________
+
+// 3. SAVE IMAGE
+
+document.getElementById("save-button").addEventListener("click", saveImage);
 
 function saveImage() {
     let dataURL = canvas.toDataURL();
@@ -151,54 +183,79 @@ function saveImage() {
     link.click();
 }
 
+//_______________________________________________________________
+
+// 4. RESET IMAGE
+
+let resetButton = document.getElementById("reset-button");
+resetButton.addEventListener("click", function () {
+    document.getElementById("warning-window").classList.remove("hidden");
+});
+
+let yesButton = document.getElementById("yes-button");
+yesButton.addEventListener("click", function () {
+    resetImage();
+    document.getElementById("warning-window").classList.add("hidden");
+});
+
 function resetImage() {
     defaultImageF();
     render_layers = [];
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     reloadImages(0);
+//     clear confirmed-traits
+    document.querySelector("#confirmed-traits").innerHTML = "";
 }
 
-function nextFunction() {
-    if (render_layers[currentTrait] !== undefined) {
-        if (currentTrait < traits.length - 1) {
-            currentTrait++;
-            if (currentTrait >= traits.length) currentTrait = 0;
-            var html = "";
-            var trait = traits[currentTrait];
-            var assetList = assets[currentTrait];
-            html += '  <h3>CHOOSE TRAITS : ' + trait + '</h3>';
-            html += '  <div class="asset-list">';
-            for (var j = 0; j < assetList.length; j++) {
-                var asset = assetList[j];
-                var assetSrc = 'assets/images/' + selected_type + '/' + trait + '/' + asset;
-                html += '<img title="' + asset.slice(0, -4) + '" class="asset" src="' + assetSrc + '" onclick="selectAsset(' + currentTrait + ', ' + j + ', true)" style="background-image:url(assets/images/' + selected_type + '/default.png)\n">';
-            }
-            html += '</div>';
-            document.querySelector("#customizer").innerHTML = html;
-        }
-    }
-}
+let noButton = document.getElementById("no-button");
+noButton.addEventListener("click", function () {
+    document.getElementById("warning-window").classList.add("hidden");
+});
 
-function backFunction() {
+//_______________________________________________________________
+
+// 5. CUSTOMIZER NAVIGATION
+
+let backButton = document.getElementById("back-button");
+backButton.addEventListener("click", function () {
     if (currentTrait > 0) {
         currentTrait--;
-        if (currentTrait < 0) {
-            currentTrait = traits.length - 1;
-        }
-        var html = "";
-        var trait = traits[currentTrait];
-        var assetList = assets[currentTrait];
-        html += '  <h3>CHOOSE TRAITS : ' + trait + '</h3>';
-        html += '  <div class="asset-list">';
-        for (var j = 0; j < assetList.length; j++) {
-            var asset = assetList[j];
-            var assetSrc = 'assets/images/' + selected_type + '/' + trait + '/' + asset;
-            html += '    <img title="' + asset.slice(0, -4) + '" class="asset" src="' + assetSrc + '" onclick="selectAsset(' + currentTrait + ', ' + j + ', true)" style="background-image:url(assets/images/' + selected_type + '/default.png)\n">';
-        }
-        html += '</div>';
-        document.querySelector("#customizer").innerHTML = html;
+        if (currentTrait < 0) currentTrait = traits.length - 1;
+        customizerHTMLsetup();
     }
+});
+
+let nextButton = document.getElementById("next-button");
+nextButton.addEventListener("click", function () {
+    //check if current trait is confirmed
+    if (document.querySelector("#confirmed-traits").innerHTML.includes(traits[currentTrait])) {
+        if (currentTrait < traits.length - 1) {
+            currentTrait++;
+            if (currentTrait > traits.length - 1) currentTrait = 0;
+            customizerHTMLsetup();
+        }
+    }
+    else {
+        document.getElementById("info-window").classList.remove("hidden");
+    }
+});
+
+let html = '<h3 class="sub-title-2">Customize your ' + selected_type + '</h3>';
+document.querySelector("#sub-title-2").innerHTML = html;
+
+let okButton = document.getElementById("ok-button");
+okButton.addEventListener("click", function () {
+    document.getElementById("info-window").classList.add("hidden");
+});
+
+function defaultImageF() {
+    document.getElementById("render-canvas").style.backgroundImage = "url(assets/images/" + selected_type + "/default.png)";
+    document.getElementById("render-canvas").style.backgroundSize = previewSize + "px";
+    document.getElementById("render-canvas").src = canvas.toDataURL();
 }
+
+
+
 
 
 
