@@ -43,8 +43,7 @@ function selectCharacter(value = selected_type) {
     selected_type = typeSelector.value;
     selectType(typeSelector.value);
     resetImage();
-    var html = '<h3 class="sub-title-2">Customize your ' + selected_type + '</h3>';
-    document.querySelector("#sub-title-2").innerHTML = html;
+    document.querySelector("#sub-title-2").innerHTML = '<h3 class="sub-title-2">Customize your ' + selected_type + '</h3>';
     if (typeSelector.value === "sheep") document.getElementById("sheep-button").style.display = "none";
     else if (typeSelector.value === "wolf") document.getElementById("sheep-button").style.display = "flex";
     if (typeSelector.value === "wolf") document.getElementById("wolf-button").style.display = "none";
@@ -104,7 +103,18 @@ function customizerHTMLsetup() {
     let html = "";
     let trait = traits[currentTrait];
     let assetList = assets[currentTrait];
-    html += '  <h3>CHOOSE TRAITS : ' + trait + '</h3>';
+    // html += '  <h3>CHOOSE TRAITS : ' + trait + '</h3>';
+    // all traits are listed here
+    html += '  <h3 class="chtr">CHOOSE TRAITS : ';
+    for (let i = 0; i < traits.length; i++) {
+        let trait = traits[i];
+        if (i === currentTrait) html += '<span class="qw cur">' + trait + '</span>';
+        else html += '<span class="qw">' + trait + '</span>';
+        html += '  <span class="cube"></span>';
+    }
+    // delete last cube
+    html = html.slice(0, -27);
+    html += '</h3>';
     html += '  <div class="asset-list">';
     for (let j = 0; j < assetList.length; j++) {
         let asset = assetList[j];
@@ -234,8 +244,7 @@ nextButton.addEventListener("click", function () {
             if (currentTrait > traits.length - 1) currentTrait = 0;
             customizerHTMLsetup();
         }
-    }
-    else {
+    } else {
         document.getElementById("info-window").classList.remove("hidden");
     }
 });
