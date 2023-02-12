@@ -151,14 +151,14 @@ function renderImage() {
             image.src = render_layers[i];
             image.onload = function () {
                 ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-                let opacity = 0.5;
-                let interval = setInterval(function () {
-                    if (opacity >= 1) {
-                        clearInterval(interval);
-                    }
-                    canvas.style.opacity = opacity;
-                    opacity += 0.01;
-                }, 0.5);
+                // let opacity = 0.5;
+                // let interval = setInterval(function () {
+                //     if (opacity >= 1) {
+                //         clearInterval(interval);
+                //     }
+                //     canvas.style.opacity = opacity;
+                //     opacity += 0.01;
+                // }, 0.5);
             }
             canvas.style.backgroundImage = "none";
             canvas.src = canvas.toDataURL();
