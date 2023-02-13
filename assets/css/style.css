@@ -273,6 +273,8 @@ h4 {
     width: 100%;
     height: 100%;
     image-rendering: pixelated;
+    background-size: cover;
+    background-position: center;
 }
 
 #warning-window {

@@ -4,12 +4,13 @@ let selected_type = "sheep";
 let currentTrait = 0;
 let asset_name;
 let trait_name;
-let previewSize = 250;
 
 let render_layers = [];
 let canvas = document.getElementById("render-canvas");
 let ctx = canvas.getContext("2d");
 
+let preview = document.getElementById("render-canvas");
+let previewSize = preview.height;
 // ______________________________________________________
 
 // 0. Load Assets
@@ -160,7 +161,9 @@ function renderImage() {
             let image = new Image();
             image.src = render_layers[i];
             image.onload = function () {
-                ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+                setTimeout(function () {
+                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+                }, 10);
                 // let opacity = 0.5;
                 // let interval = setInterval(function () {
                 //     if (opacity >= 1) {
@@ -258,7 +261,8 @@ okButton.addEventListener("click", function () {
 
 function defaultImageF() {
     document.getElementById("render-canvas").style.backgroundImage = "url(assets/images/" + selected_type + "/default.png)";
-    document.getElementById("render-canvas").style.backgroundSize = previewSize + "px";
+    // document.getElementById("render-canvas").style.backgroundSize = previewSize + "px";
+    console.log(previewSize);
     document.getElementById("render-canvas").src = canvas.toDataURL();
 }
 
