@@ -280,7 +280,7 @@ function changePos() {
             pos.innerHTML = posArray2[0];
             posArray2.shift();
         }
-    }, 4000);
+    }, 6000);
 }
 
 
