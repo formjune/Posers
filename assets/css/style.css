@@ -240,7 +240,7 @@ button:hover {
 
 h4 {
     color: #646464;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 400;
 }
 
@@ -341,7 +341,7 @@ h4 {
 
 .asset {
     font-weight: 700;
-    font-size: 14px;
+    font-size: 12px;
     color: #000000;
 }
 
@@ -418,11 +418,12 @@ h4 {
     margin: 0 10px;
 }
 
-.qw{
+.qw {
     font-size: 10px;
     font-weight: 400;
     color: #646464;
     padding: 0 5px;
+    cursor: pointer;
 }
 
 .cur {
@@ -430,6 +431,7 @@ h4 {
     font-size: 12px;
     color: #000000;
     text-decoration: #000000 underline;
+    cursor: default;
 }
 
 

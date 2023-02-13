@@ -109,10 +109,9 @@ function customizerHTMLsetup() {
     for (let i = 0; i < traits.length; i++) {
         let trait = traits[i];
         if (i === currentTrait) html += '<span class="qw cur">' + trait + '</span>';
-        else html += '<span class="qw">' + trait + '</span>';
+        else html += '<span class="qw" onclick="reloadImages(' + i + ')">' + trait + '</span>';
         html += '  <span class="cube"></span>';
     }
-    // delete last cube
     html = html.slice(0, -27);
     html += '</h3>';
     html += '  <div class="asset-list">';
@@ -237,7 +236,6 @@ backButton.addEventListener("click", function () {
 
 let nextButton = document.getElementById("next-button");
 nextButton.addEventListener("click", function () {
-    //check if current trait is confirmed
     if (document.querySelector("#confirmed-traits").innerHTML.includes(traits[currentTrait])) {
         if (currentTrait < traits.length - 1) {
             currentTrait++;
