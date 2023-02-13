@@ -187,7 +187,7 @@ button:hover {
 .asset-list {
     overflow: auto;
     display: grid;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: start;
     grid-template-columns: repeat(auto-fill, minmax(106px, 1px));
     grid-gap: 20px;
