@@ -18,6 +18,7 @@ window.onload = function () {
     selectCharacter();
     selectType();
     randomize();
+    changePos();
 };
 
 // ______________________________________________________
@@ -260,6 +261,24 @@ function defaultImageF() {
     document.getElementById("render-canvas").style.backgroundSize = previewSize + "px";
     document.getElementById("render-canvas").src = canvas.toDataURL();
 }
+
+function changePos() {
+    let pos = document.querySelector(".pos");
+    let posArray = ["You can also swap your sheeps for free via the Posers Swap Tool!", "POSERS 2023"];
+    let posArray2 = [];
+    for (let i = 0; i < posArray.length; i++) {
+        posArray2.push(posArray[i]);
+    }
+    let interval = setInterval(function () {
+        if (posArray2.length === 0) {
+            clearInterval(interval);
+        } else {
+            pos.innerHTML = posArray2[0];
+            posArray2.shift();
+        }
+    }, 4000);
+}
+
 
 
 
