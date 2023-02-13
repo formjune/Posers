@@ -11,9 +11,6 @@ let ctx = canvas.getContext("2d");
 
 let preview = document.getElementById("render-canvas");
 let previewSize = preview.height;
-// ______________________________________________________
-
-// 0. Load Assets
 
 window.onload = function () {
     selectCharacter();
@@ -21,9 +18,6 @@ window.onload = function () {
     randomize();
     changePos();
 };
-
-// ______________________________________________________
-// 1. Select Character Type
 
 let typeSelector = document.getElementById("typeSelector");
 typeSelector.addEventListener("change", function () {
@@ -65,11 +59,6 @@ function randomize() {
     }
 }
 
-
-// ______________________________________________________
-
-// 2. Select Trait
-
 function selectType(value) {
     if (typeSelector.value === "sheep") {
         traits = ["Fur", "Head", "Ears", "Eyes", "Nose", "Mouth", "Feet"];
@@ -105,8 +94,6 @@ function customizerHTMLsetup() {
     let html = "";
     let trait = traits[currentTrait];
     let assetList = assets[currentTrait];
-    // html += '  <h3>CHOOSE TRAITS : ' + trait + '</h3>';
-    // all traits are listed here
     html += '  <h3 class="chtr">CHOOSE TRAITS : ';
     for (let i = 0; i < traits.length; i++) {
         let trait = traits[i];
@@ -164,27 +151,12 @@ function renderImage() {
                 setTimeout(function () {
                     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
                 }, 10);
-                // let opacity = 0.5;
-                // let interval = setInterval(function () {
-                //     if (opacity >= 1) {
-                //         clearInterval(interval);
-                //     }
-                //     canvas.style.opacity = opacity;
-                //     opacity += 0.01;
-                // }, 0.5);
             }
             canvas.style.backgroundImage = "none";
             canvas.src = canvas.toDataURL();
         }
-        // console.log("rendered : " + render_layers + " on canvas _______________________________");
-        // canvas.style.backgroundImage = "none";
-        // canvas.src = canvas.toDataURL();
     }
 }
-
-//_______________________________________________________________
-
-// 3. SAVE IMAGE
 
 document.getElementById("save-button").addEventListener("click", saveImage);
 
@@ -195,10 +167,6 @@ function saveImage() {
     link.href = dataURL;
     link.click();
 }
-
-//_______________________________________________________________
-
-// 4. RESET IMAGE
 
 let resetButton = document.getElementById("reset-button");
 resetButton.addEventListener("click", function () {
@@ -216,7 +184,6 @@ function resetImage() {
     render_layers = [];
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     reloadImages(0);
-//     clear confirmed-traits
     document.querySelector("#confirmed-traits").innerHTML = "";
 }
 
@@ -224,10 +191,6 @@ let noButton = document.getElementById("no-button");
 noButton.addEventListener("click", function () {
     document.getElementById("warning-window").classList.add("hidden");
 });
-
-//_______________________________________________________________
-
-// 5. CUSTOMIZER NAVIGATION
 
 let backButton = document.getElementById("back-button");
 backButton.addEventListener("click", function () {
@@ -261,7 +224,6 @@ okButton.addEventListener("click", function () {
 
 function defaultImageF() {
     document.getElementById("render-canvas").style.backgroundImage = "url(assets/images/" + selected_type + "/default.png)";
-    // document.getElementById("render-canvas").style.backgroundSize = previewSize + "px";
     console.log(previewSize);
     document.getElementById("render-canvas").src = canvas.toDataURL();
 }
@@ -286,10 +248,3 @@ function changePos() {
         }
     }, 6000);
 }
-
-
-
-
-
-
-
