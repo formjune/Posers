@@ -264,7 +264,11 @@ function defaultImageF() {
 
 function changePos() {
     let pos = document.querySelector(".pos");
-    let posArray = ["You can also swap your sheeps for free via the Posers Swap Tool!", "POSERS 2023"];
+    let posArray = ["You can also swap your sheep for free via the Posers Swap Tool!", "POSERS 2023",];
+    for (let i = 0; i < 60; i++) {
+        posArray.push("You can also swap your sheep for free via the Posers Swap Tool!",);
+        posArray.push("POSERS 2023",);
+    }
     let posArray2 = [];
     for (let i = 0; i < posArray.length; i++) {
         posArray2.push(posArray[i]);
