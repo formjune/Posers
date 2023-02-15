@@ -60,8 +60,9 @@ function randomize() {
 
 function selectType(value) {
     if (typeSelector.value === "sheep") {
-        traits = ["Fur", "Head", "Ears", "Eyes", "Nose", "Mouth", "Feet"];
+        traits = ["BG", "Fur", "Head", "Ears", "Eyes", "Nose", "Mouth", "Feet"];
         assets = [
+            ["Fairytale.png", "Fire.png", "Foggy.png", "Forest.png", "Illusion.png", "Magic.png", "Meadow.png", "Silent.png", "Sunrise.png", "Underwater.png"],
             ["Black.png", "Brown.png", "Gray.png", "Survivor.png", "White.png"],
             ["None.png", "Blue Hat.png", "Blue Horns.png", "Brain.png", "Bucket Hat.png", "Capone.png", "Cowboy Hat.png", "Crown.png", "Curved Brown Horns.png", "Curved Golden Horns.png", "Fedora.png", "Mailman.png", "Mushroom.png", "Beanie.png", "Partially Shaved.png", "Pointy Brown Horns.png", "Pointy Golden Horns.png", "Pointy Red Horns.png", "Rainbow Fro.png", "Red Cap.png", "Reggae Poncho.png", "Santa.png", "Silky.png", "Seed Hat.png", "Sun Hat.png", "Visor.png", "White Cap.png"],
             ["None.png", "Cross.png", "DNA.png", "Diamond Bling.png", "Diamond Stud.png", "Gold Bling.png", "Gold Hoop.png", "Golden Chains.png", "Hearts blacked.png", "Hearts.png", "Lock.png", "Long Eared.png", "Cola.png", "Pears.png", "Plums.png", "Two Gold Piercings.png"],
@@ -71,8 +72,9 @@ function selectType(value) {
             ["None.png", "Clogs.png", "Dress Shoes.png", "Elephant.png", "Elf.png", "Frozen.png", "Golden Rings.png", "Gray Shoes.png", "Green Sneakers.png", "High.png", "Ice Skates.png", "Blue Sneakers.png", "Purple Sneakers.png", "Rainbow High.png", "Red Sneakers.png", "Roller Blades.png", "Shackles.png", "Slippers.png", "Snowboard.png", "Striped Socks.png", "Suction Cups.png", "White Boots.png", "White and Gray Sneakers.png", "Yellow Sneakers.png"]
         ];
     } else {
-        traits = ["Fur", "Head", "Eyes", "Mouth", "Neck"];
+        traits = ["BG", "Fur", "Head", "Eyes", "Mouth", "Neck"];
         assets = [
+            ["Fairytale.png", "Fire.png", "Foggy.png", "Forest.png", "Illusion.png", "Magic.png", "Meadow.png", "Silent.png", "Sunrise.png", "Underwater.png"],
             ["Black.png", "Brown.png", "Cyborg.png", "Demon.png", "Golden.png", "Gray.png", "Skeleton.png", "White.png", "Zombie.png"],
             ["Alpha.png", "Beta.png", "Delta.png", "Luna emerald.png", "Luna sapphire.png", "Omega.png"],
             ["3D Glasses.png", "Calm.png", "Challenged.png", "Chill.png", "Closed.png", "Crossed.png", "Curious.png", "Deep Blue.png", "Downward Gaze.png", "Dreaming.png", "Expressionless.png", "Flashy Sunnies.png", "Full Moon.png", "Heterochromia.png", "Hipster Glasses.png", "Leftward Gaze.png", "Lovable.png", "Mascara.png", "Narrow Dots.png", "Non.png", "Pouncing.png", "Restless.png", "Rightward Gaze.png", "Scar.png", "Simple.png", "Ski Goggles Plum.png", "Ski Goggles.png", "Standard Sunnies.png", "Sus.png", "The Intellectual.png", "Triangle.png", "Unibrow.png", "Wide Dots.png", "Zorro.png"],
@@ -111,7 +113,7 @@ function customizerHTMLsetup() {
     html += '</div>';
     document.querySelector("#customizer").innerHTML = html;
     document.querySelector("#back-button").disabled = currentTrait === 0;
-    document.querySelector("#next-button").disabled = (currentTrait === 6 && typeSelector.value === "sheep") || (currentTrait === 4 && typeSelector.value === "wolf");
+    document.querySelector("#next-button").disabled = (currentTrait === traits.length - 1);
 }
 
 function selectAsset(trait_id = 0, asset_id = 0, need_render = true) {
@@ -143,16 +145,20 @@ function renderImage() {
     else {
         ctx.imageSmoothingEnabled = false;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let loaded = 0;
         for (let i = 0; i < render_layers.length; i++) {
-            let image = new Image();
-            image.src = render_layers[i];
-            image.onload = function () {
-                setTimeout(function () {
-                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-                }, 10);
-            }
-            canvas.style.backgroundImage = "none";
-            canvas.src = canvas.toDataURL();
+            let img = new Image();
+            img.src = render_layers[i];
+            img.onload = function () {
+                loaded++;
+                if (loaded === render_layers.length) {
+                    for (let j = 0; j < render_layers.length; j++) {
+                        let img = new Image();
+                        img.src = render_layers[j];
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    }
+                }
+            };
         }
     }
 }
