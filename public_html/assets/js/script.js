@@ -62,7 +62,7 @@ function selectType(value) {
     if (typeSelector.value === "sheep") {
         traits = ["BG", "Fur", "Head", "Ears", "Eyes", "Nose", "Mouth", "Feet"];
         assets = [
-            ["Fairytale.png", "Fire.png", "Foggy.png", "Forest.png", "Illusion.png", "Magic.png", "Meadow.png", "Silent.png", "Sunrise.png", "Underwater.png"],
+            ["None.png", "Fairytale.png", "Fire.png", "Foggy.png", "Forest.png", "Illusion.png", "Magic.png", "Meadow.png", "Silent.png", "Sunrise.png", "Underwater.png"],
             ["Black.png", "Brown.png", "Gray.png", "Survivor.png", "White.png"],
             ["None.png", "Blue Hat.png", "Blue Horns.png", "Brain.png", "Bucket Hat.png", "Capone.png", "Cowboy Hat.png", "Crown.png", "Curved Brown Horns.png", "Curved Golden Horns.png", "Fedora.png", "Mailman.png", "Mushroom.png", "Beanie.png", "Partially Shaved.png", "Pointy Brown Horns.png", "Pointy Golden Horns.png", "Pointy Red Horns.png", "Rainbow Fro.png", "Red Cap.png", "Reggae Poncho.png", "Santa.png", "Silky.png", "Seed Hat.png", "Sun Hat.png", "Visor.png", "White Cap.png"],
             ["None.png", "Cross.png", "DNA.png", "Diamond Bling.png", "Diamond Stud.png", "Gold Bling.png", "Gold Hoop.png", "Golden Chains.png", "Hearts blacked.png", "Hearts.png", "Lock.png", "Long Eared.png", "Cola.png", "Pears.png", "Plums.png", "Two Gold Piercings.png"],
@@ -74,7 +74,7 @@ function selectType(value) {
     } else {
         traits = ["BG", "Fur", "Head", "Eyes", "Mouth", "Neck"];
         assets = [
-            ["Fairytale.png", "Fire.png", "Foggy.png", "Forest.png", "Illusion.png", "Magic.png", "Meadow.png", "Silent.png", "Sunrise.png", "Underwater.png"],
+            ["None.png", "Fairytale.png", "Fire.png", "Foggy.png", "Forest.png", "Illusion.png", "Magic.png", "Meadow.png", "Silent.png", "Sunrise.png", "Underwater.png"],
             ["Black.png", "Brown.png", "Cyborg.png", "Demon.png", "Golden.png", "Gray.png", "Skeleton.png", "White.png", "Zombie.png"],
             ["Alpha.png", "Beta.png", "Delta.png", "Luna emerald.png", "Luna sapphire.png", "Omega.png"],
             ["3D Glasses.png", "Calm.png", "Challenged.png", "Chill.png", "Closed.png", "Crossed.png", "Curious.png", "Deep Blue.png", "Downward Gaze.png", "Dreaming.png", "Expressionless.png", "Flashy Sunnies.png", "Full Moon.png", "Heterochromia.png", "Hipster Glasses.png", "Leftward Gaze.png", "Lovable.png", "Mascara.png", "Narrow Dots.png", "Non.png", "Pouncing.png", "Restless.png", "Rightward Gaze.png", "Scar.png", "Simple.png", "Ski Goggles Plum.png", "Ski Goggles.png", "Standard Sunnies.png", "Sus.png", "The Intellectual.png", "Triangle.png", "Unibrow.png", "Wide Dots.png", "Zorro.png"],
@@ -143,6 +143,7 @@ function selectAsset(trait_id = 0, asset_id = 0, need_render = true) {
 function renderImage() {
     if (render_layers.length === 0) defaultImageF();
     else {
+
         ctx.imageSmoothingEnabled = false;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         let loaded = 0;
@@ -155,11 +156,16 @@ function renderImage() {
                     for (let j = 0; j < render_layers.length; j++) {
                         let img = new Image();
                         img.src = render_layers[j];
-                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        //resize the image to fit the canvas
+
+                        if (j === 0) ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        else ctx.drawImage(img, 15, 15, canvas.width - 30, canvas.height - 30);
                     }
                 }
             };
         }
+        canvas.style.backgroundImage = "none";
+        canvas.src = canvas.toDataURL();
     }
 }
 
@@ -173,6 +179,19 @@ function saveImage() {
     ctx2.imageSmoothingEnabled = false;
     ctx2.drawImage(canvas, 0, 0, canvas2.width, canvas2.height);
     let dataURL = canvas2.toDataURL();
+
+    //add 30 extra pixels of free space to each side of the canvas
+    // let canvas3 = document.createElement("canvas");
+    // canvas3.width = canvas2.width + 300;
+    // canvas3.height = canvas2.height + 300;
+    // let ctx3 = canvas3.getContext("2d");
+    // ctx3.imageSmoothingEnabled = false;
+    // //fill style - transparent
+    // ctx3.fillStyle = "rgba(0, 0, 0, 0)";
+    // ctx3.fillRect(0, 0, canvas3.width, canvas3.height);
+    // ctx3.drawImage(canvas2, 150, 150, canvas2.width, canvas2.height);
+    // let dataURL2 = canvas3.toDataURL();
+
     let link = document.createElement("a");
     link.download = selected_type + ".png";
     link.href = dataURL;
