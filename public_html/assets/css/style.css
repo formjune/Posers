@@ -355,10 +355,6 @@ h4 {
     color: #000000;
 }
 
-.asset:hover {
-    text-decoration: #000000 underline;
-}
-
 #info-buttons {
     display: flex;
     justify-content: center;
