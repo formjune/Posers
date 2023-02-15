@@ -50,7 +50,7 @@ body {
     /*min-height: 100vh;*/
     animation-duration: 1.5s;
     animation-name: slidetop;
-    margin: 0 40px 40px 40px;
+    margin: 0 20px 20px 20px;
 
 }
 
@@ -627,6 +627,10 @@ h4 {
         height: 50px;
     }
 
+    .sub-title-1 {
+        justify-content: center;
+    }
+
 }
 
 @media (max-width: 700px) {
@@ -639,6 +643,16 @@ h4 {
 @media (max-width: 500px) {
     .asset-list {
         grid-template-columns: 2fr 1fr;
+    }
+
+    .footer {
+        height: 100px;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .square {
+        display: none;
     }
 }
 
