@@ -156,8 +156,6 @@ function renderImage() {
                     for (let j = 0; j < render_layers.length; j++) {
                         let img = new Image();
                         img.src = render_layers[j];
-                        //resize the image to fit the canvas
-
                         if (j === 0) ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                         else ctx.drawImage(img, 15, 15, canvas.width - 30, canvas.height - 30);
                     }
@@ -179,19 +177,6 @@ function saveImage() {
     ctx2.imageSmoothingEnabled = false;
     ctx2.drawImage(canvas, 0, 0, canvas2.width, canvas2.height);
     let dataURL = canvas2.toDataURL();
-
-    //add 30 extra pixels of free space to each side of the canvas
-    // let canvas3 = document.createElement("canvas");
-    // canvas3.width = canvas2.width + 300;
-    // canvas3.height = canvas2.height + 300;
-    // let ctx3 = canvas3.getContext("2d");
-    // ctx3.imageSmoothingEnabled = false;
-    // //fill style - transparent
-    // ctx3.fillStyle = "rgba(0, 0, 0, 0)";
-    // ctx3.fillRect(0, 0, canvas3.width, canvas3.height);
-    // ctx3.drawImage(canvas2, 150, 150, canvas2.width, canvas2.height);
-    // let dataURL2 = canvas3.toDataURL();
-
     let link = document.createElement("a");
     link.download = selected_type + ".png";
     link.href = dataURL;
