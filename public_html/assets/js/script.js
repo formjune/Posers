@@ -37,7 +37,7 @@ function selectCharacter(value = selected_type) {
     typeSelector.value = value;
     selected_type = typeSelector.value;
     selectType(typeSelector.value);
-    resetImage();
+    randomize();
     document.querySelector("#sub-title-2").innerHTML = '<h3 class="sub-title-2">Customize your ' + selected_type + '</h3>';
     if (typeSelector.value === "sheep") document.getElementById("sheep-button").style.display = "none";
     else if (typeSelector.value === "wolf") document.getElementById("sheep-button").style.display = "flex";
