@@ -285,6 +285,7 @@ h4 {
     image-rendering: pixelated;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
 #warning-window {
@@ -583,12 +584,6 @@ h4 {
         font-size: min(16vw, 12px);
     }
 
-    /*#render-canvas {*/
-    /*    min-height: 100px;*/
-    /*    min-width: 100px;*/
-    /*    max-height: 200px;*/
-    /*    max-width: 200px;*/
-    /*}*/
     .chtr, #preview h3 {
         display: none;
     }
